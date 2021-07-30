@@ -1,0 +1,11 @@
+<div>
+  <p>This document is specifically generated for <b>{{student.name | uppercase}}</b> for examination duration
+    <b>{{student.startDate| date}} </b>&#8212;<b> {{student.endDate | date}}</b>.
+    To verify the validity of the QR code below, please visit <a
+      href="https://veriform.co/scan">https://rongovarsity.veriform.co/scan</a>
+  </p>
+  <app-qrcode [student]="student"></app-qrcode>
+
+  <!-- <button (click)="generatePdf(student.course)">Download PDF</button> -->
+</div>
+<!-- long dash &#8212; -->

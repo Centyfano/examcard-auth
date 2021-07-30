@@ -1,0 +1,46 @@
+{
+  "studentStudentRegNumber": "Z3-13-84",
+  "yearOfStudy": 1,
+  "semesterOfStudy": 2,
+  "units": [
+    {
+      "code": "SNE 410",
+      "name": "Soil Mechanics 1A. 1B"
+    },
+    {
+      "code": "MAT 223",
+      "name": "Communication Design"
+    },
+    {
+      "code": "SNE 394",
+      "name": "Research Methodology"
+    },
+    {
+      "code": "BIO 137",
+      "name": "SHBU 7111: Principles of Bioethics"
+    },
+    {
+      "code": "MAT 444",
+      "name": "Sustainable Tourism"
+    }
+  ],
+  "examinationExaminationId": "2210",
+  "createdAt": "2021-07-26T05:36:45.917Z",
+  "updatedAt": "2021-07-26T05:36:45.917Z",
+  "student": {
+    "firstName": "Wiley",
+    "middleName": null,
+    "lastName": "Isakovic",
+    "course": {
+      "courseName": "Computer Science",
+      "school": {
+        "schoolName": "SCIENCE"
+      }
+    }
+  },
+  "examination": {
+    "academicYear": "2018/2019",
+    "startDate": "2018-02-09T21:00:00.000Z",
+    "endDate": "2019-02-11T21:00:00.000Z"
+  }
+}

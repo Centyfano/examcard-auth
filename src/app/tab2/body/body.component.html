@@ -1,0 +1,74 @@
+<div class="wrap">
+  <div class="wrap-1">
+    <span>
+      <div class="detail-header">Name:</div>
+      <div>{{student.name | uppercase}}</div>
+    </span>
+
+    <span>
+      <div class="detail-header">Admission:</div>
+      <div>{{ student.regNumber | uppercase}}</div>
+    </span>
+
+    <span>
+      <div class="detail-header">School:</div>
+      <div style="text-transform:none;">School of {{ student.school }}</div>
+    </span>
+
+    <span>
+      <div class="detail-header">Course:</div>
+      <div style="text-transform:capitalize;">{{ student.course}}</div>
+    </span>
+  </div>
+  <div class="wrap-2">
+    <span>
+      <div class="detail-header column-2">Year of study:</div>
+      <div>Y0{{ student.year}} S0{{ student.semester}} </div>
+    </span>
+
+    <span>
+      <div class="detail-header column-2">Academic Year:</div>
+      <div> {{student.academicYear}} </div>
+    </span>
+
+    <span>
+      <div class="detail-header column-2">Start Date:</div>
+      <div> {{student.startDate| date}} </div>
+    </span>
+
+    <span>
+      <div class="detail-header column-2">End date:</div>
+      <div> {{student.endDate | date}} </div>
+    </span>
+  </div>
+
+</div>
+
+<div class="units">
+  <table>
+    <tr>
+      <th class="date">Date</th>
+      <th class="code">Course Code</th>
+      <th class="title">Course Title</th>
+      <th class="units">Units</th>
+      <th class="booklet">Booklet Serial</th>
+      <th class="sign">Invigilator's Signature </th>
+    </tr>
+    <tr *ngFor="let unit of student.units">
+      <td class="date"></td>
+      <td class="code"> {{unit.code | uppercase}}</td>
+      <td class="title title-data"> {{unit.name }} </td>
+      <td class="units"></td>
+      <td class="booklet"></td>
+      <td class="sign"></td>
+    </tr>
+    <!-- <tr>
+            <td class="date" style="display: hidden;"></td>
+            <td class="code"></td>
+            <td class="title title-data"></td>
+            <td class="units"></td>
+            <td class="booklet"></td>
+            <td class="sign"></td>
+        </tr> -->
+  </table>
+</div>

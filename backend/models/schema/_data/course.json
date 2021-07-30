@@ -1,0 +1,22 @@
+[
+  {
+    "courseId": "AGED",
+    "courseName": "Agricultural Extension and Development",
+    "schoolSchoolId": "ART"
+  },
+  {
+    "courseId": "CSC",
+    "courseName": "Computer Science",
+    "schoolSchoolId": "SCI"
+  },
+  {
+    "courseId": "DICT",
+    "courseName": "Information, communication and Technology",
+    "schoolSchoolId": "INFOCOMS"
+  },
+  {
+    "courseId": "ISC",
+    "courseName": "Information Science",
+    "schoolSchoolId": "INFOCOMS"
+  }
+]

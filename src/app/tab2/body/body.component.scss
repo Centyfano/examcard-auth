@@ -1,0 +1,70 @@
+$cells_padding: 9px;
+$student_details_fontsize: 0.8em;
+$student_details_header_fontsize: 0.9em;
+
+$table_date_width: 15%;
+$table_code_width: 13%;
+$table_title_width: 32%;
+$table_units_width: 10%;
+$table_booklet_width: 15%;
+$table_sign_width: 15%;
+
+.wrap {
+  margin: 10px 0;
+  display: flex;
+  flex-direction: row;
+  line-height: 20px;
+  font-size: $student_details_fontsize;
+  // justify-content: space-between;
+
+  .wrap-1 {
+    width: 65%;
+  }
+  span {
+    display: flex;
+    flex-direction: row;
+  }
+  .detail-header {
+    min-width: 80px;
+    font-weight: bold;
+    font-size: $student_details_header_fontsize;
+  }
+  .column-2 {
+    min-width: 100px;
+  }
+
+  .details {
+    margin-left: 10px;
+  }
+}
+
+table {
+  width: 98%;
+  border-spacing: 15px;
+  margin: 2% 0;
+  tr, td {
+    padding: $cells_padding;
+    font-size: 80%;
+  }
+  th {
+    text-transform: uppercase;
+    font-size: 80%;
+    padding: 7px;
+  }
+
+  .title-data {
+    text-transform: uppercase;
+  }
+  .date {width: $table_date_width;}
+  .code {width: $table_code_width;}
+  .title {width: $table_title_width;}
+  .units {width: $table_units_width;}
+  .booklet {width: $table_booklet_width;}
+  .sign {width: $table_sign_width;}
+
+}
+table,th,td {
+  border: 1px solid black;
+  border-collapse: collapse;
+  // font-size: 0.8em;
+}
