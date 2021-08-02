@@ -22,13 +22,13 @@ The application receives ann API from the school having three databases:
 - Clone the `https://github.com/Centyfano/examcard-auth.git` project into your computer, then navigate to the `examcard-auth` folder
 - On the terminal, run `npm i`
 
-#Environment Variables  
+Environment Variables  
 Navigate to `backend/config`, and create a file called `config.env`. In the file, initialize and assign the following variables, according to their respective descriptions:  
-** PORT = web_server_port  
-** DB = database_name  
-** DB_USER = database_user  
-** DB_PWD = database_password  
-\*\* QR_SECRET = secret_encryption_key_for_qr_code
+  * PORT = web_server_port  
+  * DB = database_name  
+  * DB_USER = database_user  
+  * DB_PWD = database_password  
+  * QR_SECRET = secret_encryption_key_for_qr_code
 
 ## Usage
 
