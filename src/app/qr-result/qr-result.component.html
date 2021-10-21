@@ -1,3 +1,66 @@
-<p>
-  qr-result works!
-</p>
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>Student Details</ion-title>
+  </ion-toolbar>
+
+</ion-header>
+
+
+<ion-content [scrollEvents]="true">
+  <!-- Default Item -->
+
+  <ion-item *ngIf="userErr" color="danger">
+    <ion-label>
+      Unauthorized: {{userErr}}
+    </ion-label>
+  </ion-item>
+
+  <div *ngIf="!userErr && userDetails">
+
+
+    <ion-item>
+      <ion-note slot="end">Student Name</ion-note>
+      <ion-label>{{userDetails.fullName}}</ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-note slot="end">Reg. Number</ion-note>
+      <ion-label>{{userDetails.studentStudentRegNumber}}</ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-note slot="end">Academic Year</ion-note>
+      <ion-label>{{userDetails.examination.academicYear}}</ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-label>
+        <span class="ion-margin-end">Year of study: <strong>0{{userDetails.yearOfStudy}}</strong></span>
+        <span class="ion-margin-start">Semester: <strong>0{{userDetails.semesterOfStudy}}</strong></span>
+      </ion-label>
+    </ion-item>
+
+    <div class="ion-margin"></div>
+    <ion-list>
+      <ion-list-header lines="none">
+        <ion-label color="">
+          <h1>Units</h1>
+        </ion-label>
+      </ion-list-header>
+      <ion-item *ngFor="let unit of userDetails.units" lines="inset">
+        <span class="ion-margin-end">{{unit.code}}</span> <span class="ion-margin-start unit-name">{{unit.name}}</span>
+      </ion-item>
+    </ion-list>
+  </div>
+
+
+</ion-content>
+
+<ion-footer *ngIf="!userErr && userDetails">
+  <ion-item color="primary">
+    <ion-label class="ion-text-center unit-nam">
+      <strong>{{userDetails.fullName | uppercase}}</strong> is
+      <strong>APPROVED</strong>
+    </ion-label>
+  </ion-item>
+</ion-footer>

@@ -1,7 +1,11 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
 import { ExamcardService } from '../examcard/examcard.service';
 import { Student } from '../models/student';
-import { jsPDF } from 'jspdf';
+import jsPDF from 'jspdf';
+import pdfMake from 'pdfmake/build/pdfmake';
+import pdfFonts from 'pdfmake/build/vfs_fonts';
+pdfMake.vfs = pdfFonts.pdfMake.vfs;
+import htmlToPdfmake from 'html-to-pdfmake';
 
 @Component({
   selector: 'app-tab2',
@@ -9,44 +13,33 @@ import { jsPDF } from 'jspdf';
   styleUrls: ['tab2.page.scss'],
 })
 export class Tab2Page implements OnInit {
-  @Input() student: Student;
+  @ViewChild('examCard') examCard: ElementRef;
+  stud: Student;
+  isError: any;
 
   constructor(private examService: ExamcardService) {}
 
-  // eslint-disable-next-line @typescript-eslint/member-ordering
-  isOkay: any;
-
-  genPdf(id) {
-    const options = {
-      x: 10,
-      y: 10,
-      // fileName: this.student.name
-    };
-    console.log(this.isOkay);
-
-    const doc = new jsPDF({
-      orientation: 'portrait',
-      unit: 'in',
-      // format: [4, 2],
-    });
-    const call = (dc: { save: () => void }) => {
-      dc.save();
-    };
-
-    // doc.html(document.body, { callback: call });
-    // doc.save();
-  }
-
-  getStudent(): void {
-    this.examService.getStudent('D3-23-444').subscribe(
-      (s) => {
-        this.student = s;
+  getStudent() {
+    this.examService.getStudent('D3-23-44').subscribe(
+      (res: Student) => {
+        this.stud = res;
       },
       (error) => {
-        console.log('the err is ', error);
-        this.isOkay = error;
+        this.isError = error;
+        return;
       }
     );
+  }
+
+  genPdf() {
+    const doc = new jsPDF();
+
+    const examCard = this.examCard.nativeElement;
+
+    const html = htmlToPdfmake(examCard.innerHTML);
+
+    const documentDefinition = { content: html, info: { title: 'anc.pdf',filename:'pdfml' } };
+    pdfMake.createPdf(documentDefinition).open();
   }
 
   ngOnInit() {

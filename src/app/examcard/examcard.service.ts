@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import { Observable, of } from 'rxjs';
+import { Observable, of, throwError } from 'rxjs';
 import { map, catchError, tap } from 'rxjs/operators';
 import { Student } from '../models/student';
 
@@ -8,7 +8,7 @@ import { Student } from '../models/student';
   providedIn: 'root',
 })
 export class ExamcardService {
-  private studentUrl = 'http://localhost:5000/eligible';
+  private studentUrl = 'http://localhost:3000/eligible';
 
   // eslint-disable-next-line @typescript-eslint/member-ordering
   throwError: any;
@@ -67,17 +67,20 @@ export class ExamcardService {
   }
   private handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
-      // TODO: send the error to remote logging infrastructure
-      // console.error(error); // log to console instead
-
-      // TODO: better job of transforming error for user consumption
-      this.log(`${operation} failed: ${error.status}`);
-      // Let the app keep running by returning an empty result.
-      return of(result as T);
+      let custom = '';
+      if (error.status === 0) {
+        // A client-side or network error occurred. Handle it accordingly.
+        console.error('An error occurred:', error.error);
+      } else if (error.status === 404) {
+        // console.error(error);
+        custom = 'Please Ensure you have cleared with the finance department';
+      } else {
+        custom = 'Please try again';
+      }
+      // Return an observable with a user-facing error message.
+      return throwError(custom);
     };
   }
 
-  private log(message: string) {
-    console.log(message);
-  }
+  private log(message: string) {}
 }

@@ -13,15 +13,17 @@
     </ion-toolbar>
   </ion-header>
 
-  <div style="padding: 5%;" id="download" *ngIf="!isOkay">
-    <app-header [student]="student"></app-header>
-    <app-body [student]="student"></app-body>
-    <app-footer [student]="student"></app-footer>
+  <div style="padding: 5%;" *ngIf="!isError && stud" id="examCard" #examCard>
+    <app-header [student]="stud"></app-header>
+    <app-body [student]="stud"></app-body>
+    <app-footer [student]="stud"></app-footer>
+    <div class="dl-btn">
+    </div>
   </div>
-  <button (click)="genPdf('download')">Download PDF</button>
+  <button (click)="genPdf()">Download PDF</button>
 
-  <div *ngIf="isOkay">
-    Please Ensure you have cleared with the finance department
+  <div *ngIf="isError">
+    {{isError}}
   </div>
 
 </ion-content>

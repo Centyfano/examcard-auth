@@ -1,17 +1,24 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>
-      Tab 3
+      Scan Code
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Tab 3</ion-title>
-    </ion-toolbar>
-  </ion-header>
-
-  <app-explore-container name="Tab 3 page"></app-explore-container>
+  <div style="width: 100%; height: 100%">
+    <zxing-scanner style="height: 100%; width: 100%" 
+      #scanner [device]="currentDevice" 
+      [torch]="torchEnabled"
+      previewFitMode="fill" 
+      (scanSuccess)="onCodeResult($event)" 
+      (permissionResponse)="onHasPermission($event)"
+      (camerasFound)="onCamerasFound($event)" 
+      (torchCompatible)="onIsTorchCompatible($event)"
+      [enable]="enableCamera"
+      >
+    </zxing-scanner>
+  <div class="hole"><div class="hole-laser"></div></div>
+  </div>
 </ion-content>

@@ -1,5 +1,5 @@
 const express = require("express");
-require("dotenv").config({ path: "config/config.env" });
+require("dotenv").config({ path: "backend/config/config.env" });
 const app = express();
 
 // CORS
@@ -25,7 +25,7 @@ const mounts = require("./routes");
 mounts(app);
 
 // Start server
-const port = process.env.PORT || 5000;
+const port = process.env.PORT;
 app.listen(port, () => {
   console.log("App listening on port ", port);
 });
