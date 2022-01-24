@@ -55,3 +55,25 @@ exports.createExams = async (req, res, next) => {
     console.error(error);
   }
 };
+
+exports.createExam = async (req, res, next) => {
+  try {
+    const exam = {
+      examinationId: "2213",
+      academicYear: "2019/2020",
+      startDate: "02/10/2019",
+      endDate: "02/12/2020",
+    };
+    await Examination.sync();
+    await Examination.upsert(exam /*, { transaction: t } */);
+
+    res.status(201).json({
+      success: true,
+      message: `Students imported successfuly, QR created`,
+    });
+    // });
+  } catch (error) {
+    console.error(error);
+    res.json(error.message);
+  }
+};

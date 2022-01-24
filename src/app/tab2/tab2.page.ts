@@ -1,11 +1,7 @@
-import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { ExamcardService } from '../examcard/examcard.service';
 import { Student } from '../models/student';
-import jsPDF from 'jspdf';
-import pdfMake from 'pdfmake/build/pdfmake';
-import pdfFonts from 'pdfmake/build/vfs_fonts';
-pdfMake.vfs = pdfFonts.pdfMake.vfs;
-import htmlToPdfmake from 'html-to-pdfmake';
+import { jsPDF } from 'jspdf';
 
 @Component({
   selector: 'app-tab2',
@@ -20,7 +16,9 @@ export class Tab2Page implements OnInit {
   constructor(private examService: ExamcardService) {}
 
   getStudent() {
-    this.examService.getStudent('D3-23-44').subscribe(
+    this.examService.getStudent('P3-63-04').subscribe(
+      // P3-63-04   eligible
+      // Z3-13-84   ineligible
       (res: Student) => {
         this.stud = res;
       },
@@ -31,15 +29,23 @@ export class Tab2Page implements OnInit {
     );
   }
 
-  genPdf() {
-    const doc = new jsPDF();
+  shortName(nm: string) {
+    // const name = nm.replace(' ', '-');
+    let name: any = nm.split(' ');
+    name = name.join('-');
 
-    const examCard = this.examCard.nativeElement;
+    return name.toLowerCase();
+  }
 
-    const html = htmlToPdfmake(examCard.innerHTML);
-
-    const documentDefinition = { content: html, info: { title: 'anc.pdf',filename:'pdfml' } };
-    pdfMake.createPdf(documentDefinition).open();
+  public genPDF() {
+    const pdf = new jsPDF('p', 'pt', 'a4');
+    pdf.html(this.examCard.nativeElement, {
+      callback: (doc) => {
+        // doc.addFont()
+        doc.setFontSize(1);
+        doc.save(`${this.shortName(this.stud.name)}.pdf`);
+      },
+    });
   }
 
   ngOnInit() {

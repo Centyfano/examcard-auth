@@ -1,6 +1,6 @@
 const sequelize = require("../config/database");
 const { DataTypes } = require("sequelize");
-const EligibleStudent = require("./EligibleStudent");
+const EligibleStudentId = require("./EligibleStudentId");
 
 const ExamQr = sequelize.define("exam_qr", {
   examinationCardId: {
@@ -8,11 +8,11 @@ const ExamQr = sequelize.define("exam_qr", {
     allowNull: false,
     primaryKey: true,
   },
-  eligibleStudentStudentStudentRegNumber: {
+  eligibleStudentIdStudentStudentRegNumber: {
     type: DataTypes.STRING,
     allowNull: false,
     references: {
-      model: EligibleStudent,
+      model: EligibleStudentId,
       key: "studentStudentRegNumber",
     },
   },

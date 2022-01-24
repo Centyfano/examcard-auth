@@ -4,8 +4,8 @@ const exams = require("./examinations");
 const qrdetails = require("./exam_qr");
 
 module.exports = (app) => {
-  app.use("/students", students);
-  app.use("/eligible", eligible);
-  app.use("/exams", exams);
-  app.use("/qr", qrdetails);
+  app.use("/api/students", students);
+  app.use("/api/eligible", eligible);
+  app.use("/api/exams", exams);
+  app.use("/api/qr", qrdetails);
 };

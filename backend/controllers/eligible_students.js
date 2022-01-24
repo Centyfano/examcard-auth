@@ -11,11 +11,18 @@ const Examination = require("../models/Examination");
 const ExamQr = require("../models/ExamQr");
 const Course = require("../models/Course");
 const School = require("../models/School");
+const EligibleStudentId = require("../models/EligibleStudentId");
+
+const { currentExamID } = require("./currentExam");
 
 // Inner joins
-EligibleStudent.belongsTo(Student);
-EligibleStudent.belongsTo(Examination);
-EligibleStudent.hasOne(ExamQr);
+EligibleStudentId.belongsTo(Student);
+EligibleStudent.belongsTo(EligibleStudentId);
+// EligibleStudentId.hasMany(EligibleStudent);
+// EligibleStudent.hasMany(ExamQr);
+// EligibleStudentId.hasMany(ExamQr);
+// ExamQr.belongsTo(EligibleStudentId);
+
 Student.belongsTo(Course);
 Course.belongsTo(School);
 
@@ -38,11 +45,16 @@ exports.getEligibleStudents = async (req, res, next) => {
 exports.getStudent = async (req, res, next) => {
   try {
     const id = req.params.id;
-    const student = await EligibleStudent.findByPk(id, {
+    const student = await EligibleStudent.findOne({
+      where: [
+        { studentStudentRegNumber: id },
+        { examinationExaminationId: currentExamID },
+      ],
+
       include: [
         {
           model: Student,
-          attributes: ["firstName", "middleName", "lastName", "courseCourseId"],
+          attributes: ["firstName", "middleName", "lastName"],
           include: [
             {
               model: Course,
@@ -60,12 +72,15 @@ exports.getStudent = async (req, res, next) => {
           model: Examination,
           attributes: { exclude: ["createdAt", "updatedAt"] },
         },
-        {
-          model: ExamQr,
-          attributes: ["examinationCardId", "qrcode"],
-        },
       ],
-      attributes: { exclude: ["createdAt", "updatedAt"] },
+      attributes: {
+        exclude: [
+          "createdAt",
+          "updatedAt",
+          "eligibleStudentIdStudentStudentRegNumber",
+          "id",
+        ],
+      },
     });
 
     if (!student) {
@@ -89,6 +104,133 @@ exports.createEligibleStudents = async (req, res, next) => {
     };
     // Fetch students from API
     const students = JSON.parse(
+      fs.readFileSync(`${pathto}/eligibles.json`, "utf-8")
+    );
+
+    // // Sync students table
+    await EligibleStudentId.sync();
+    await EligibleStudent.sync();
+    // await ExamQr.sync();
+
+    //   Iterate through each student
+    students.forEach(async (student) => {
+      // console.log(student);
+      // await EligibleStudentId.upsert(student.studentStudentRegNumber);
+      await EligibleStudentId.findOrCreate({
+        where: { studentStudentRegNumber: student.studentStudentRegNumber },
+        defaults: { studentStudentRegNumber: student.studentStudentRegNumber },
+      });
+
+      student.id = nanoid();
+      student.eligibleStudentIdStudentStudentRegNumber =
+        student.studentStudentRegNumber;
+
+      qrdetails.studentReg = student.studentStudentRegNumber;
+      qrdetails.examId = student.examinationExaminationId;
+
+      // Encrypt into QR code
+      const cipher = crypto.AES.encrypt(
+        JSON.stringify(qrdetails),
+        process.env.QR_SECRET
+      ).toString();
+
+      // Insert encrypted qr details into database
+      // const examqr = {
+      (student.examinationCardId = nanoid()),
+        (student.qrcode = cipher),
+        // };
+        // console.log(examqr);
+
+        // console.log(examqr);
+
+        await EligibleStudent.create(student /*, { transaction: t } */);
+      // await ExamQr.create(examqr /*, { transaction: t } */);
+    });
+
+    res.status(201).json({
+      success: true,
+      message: `Students imported successfuly, QR created`,
+    });
+    // });
+  } catch (error) {
+    console.error(error);
+    res.json(error.message);
+  }
+};
+
+exports.createEligibleStudent = async (req, res, next) => {
+  try {
+    // const tran = await sequelize.transaction(async (t) => {
+    const pathto = path.join(__dirname, "../models/schema/_data");
+    const qrdetails = {
+      studentReg: "",
+      examId: "",
+    };
+    // Fetch students from API
+    const students = JSON.parse(
+      fs.readFileSync(`${pathto}/eligible.json`, "utf-8")
+    );
+
+    // // Sync students table
+    await EligibleStudentId.sync();
+    await EligibleStudent.sync();
+    // await ExamQr.sync();
+
+    //   Iterate through each student
+    students.forEach(async (student) => {
+      // console.log(student);
+      // await EligibleStudentId.upsert(student.studentStudentRegNumber);
+      await EligibleStudentId.findOrCreate({
+        where: { studentStudentRegNumber: student.studentStudentRegNumber },
+        defaults: { studentStudentRegNumber: student.studentStudentRegNumber },
+      });
+
+      student.id = nanoid();
+      student.eligibleStudentIdStudentStudentRegNumber =
+        student.studentStudentRegNumber;
+
+      qrdetails.studentReg = student.studentStudentRegNumber;
+      qrdetails.examId = student.examinationExaminationId;
+
+      // Encrypt into QR code
+      const cipher = crypto.AES.encrypt(
+        JSON.stringify(qrdetails),
+        process.env.QR_SECRET
+      ).toString();
+
+      // Insert encrypted qr details into database
+      // const examqr = {
+      (student.examinationCardId = nanoid()),
+        (student.qrcode = cipher),
+        // };
+        // console.log(examqr);
+
+        // console.log(examqr);
+
+        await EligibleStudent.create(student /*, { transaction: t } */);
+      // await ExamQr.create(examqr /*, { transaction: t } */);
+    });
+
+    res.status(201).json({
+      success: true,
+      message: `Student imported successfuly, QR created`,
+    });
+    // });
+  } catch (error) {
+    console.error(error);
+    res.json(error.message);
+  }
+};
+exports.createEligibleStudentss = async (req, res, next) => {
+  try {
+    // const tran = await sequelize.transaction(async (t) => {
+    const pathto = path.join(__dirname, "../models/schema/_data");
+    const qrdetails = {
+      studentReg: "",
+      examId: "",
+    };
+    // Fetch students from API
+    const students = JSON.parse(
       fs.readFileSync(`${pathto}/eligible.json`, "utf-8")
     );
 
@@ -98,7 +240,8 @@ exports.createEligibleStudents = async (req, res, next) => {
 
     //   Iterate through each student
     students.forEach(async (student) => {
-      await EligibleStudent.upsert(student /*, { transaction: t } */);
+      student.id = nanoid();
+      await EligibleStudent.create(student /*, { transaction: t } */);
 
       qrdetails.studentReg = student.studentStudentRegNumber;
       qrdetails.examId = student.examinationExaminationId;
@@ -118,16 +261,16 @@ exports.createEligibleStudents = async (req, res, next) => {
 
       // console.log(examqr);
 
-      await ExamQr.upsert(examqr /*, { transaction: t } */);
+      await ExamQr.create(examqr /*, { transaction: t } */);
     });
 
     res.status(201).json({
       success: true,
-      message: `Students imported successfuly, QR created`,
+      message: `Student imported successfuly, QR created`,
     });
     // });
   } catch (error) {
     console.error(error);
-    res.json(error.message);
+    res.json(error);
   }
 };

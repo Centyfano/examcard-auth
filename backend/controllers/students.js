@@ -1,7 +1,6 @@
 const got = require("got");
 const Student = require("../models/Student");
 
-
 /**
  * @description Get all students
  * @method GET
@@ -24,7 +23,19 @@ exports.getStudents = async (req, res, next) => {
 
 // Method   GET
 // Desc     Get a single student
-exports.getStudent = async (req, res, next) => {};
+exports.getStudent = async (req, res, next) => {
+  try {
+    const id = req.params.id;
+    const student = await Student.findByPk(id, {
+      attributes: { exclude: ["createdAt", "updatedAt"] },
+    });
+    if (!student)
+      return res.status(404).json({ msg: `Student ${id} not found` });
+    res.status(200).json(student);
+  } catch (error) {
+    console.log(err);
+  }
+};
 
 // Method   GET/POST
 // Desc     Get all students, post them in db
@@ -33,7 +44,7 @@ exports.createStudents = async (req, res, next) => {
     let users;
 
     // Fetch students from API
-    const students = await got.get(studentsurl, {responseType: "json",});
+    const students = await got.get(studentsurl, { responseType: "json" });
     // const students = await Student.get
 
     const eachUser = {
@@ -50,7 +61,6 @@ exports.createStudents = async (req, res, next) => {
 
     // Sync students table
     await Student.sync();
-
 
     users.forEach(async (user) => {
       eachUser.studentRegNumber = user.studentRegNumber;

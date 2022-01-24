@@ -2,15 +2,20 @@ const { DataTypes } = require("sequelize");
 const sequelize = require("../config/database");
 const Student = require("./Student");
 const Examination = require("./Examination");
+const EligibleStudentId = require("./EligibleStudentId");
 
 const EligibleStudent = sequelize.define("eligible_student", {
-  studentStudentRegNumber: {
+  id: {
     type: DataTypes.STRING,
     primaryKey: true,
     allowNull: false,
+  },
+  eligibleStudentIdStudentStudentRegNumber: {
+    type: DataTypes.STRING,
+    allowNull: false,
     references: {
-      model: Student,
-      key: "studentRegNumber",
+      model: EligibleStudentId,
+      key: "studentStudentRegNumber",
     },
   },
   yearOfStudy: {
@@ -35,6 +40,12 @@ const EligibleStudent = sequelize.define("eligible_student", {
       key: "examinationId",
     },
   },
+  examinationCardId: {
+    type: DataTypes.STRING,
+    allowNull: false,
+    primaryKey: true,
+  },
+  qrcode: { type: DataTypes.STRING, allowNull: false },
 });
 
 module.exports = EligibleStudent;

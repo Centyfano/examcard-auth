@@ -29,8 +29,8 @@ export class QrResultComponent implements OnInit {
       },
       (err: any) => {
         console.error(err);
-        if (err.status === 404) {
-          this.userErr = 'Exam card not recognized';
+        if (err) {
+          this.userErr = err.error.message;
         }
       }
     );

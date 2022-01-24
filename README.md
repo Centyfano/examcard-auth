@@ -19,16 +19,11 @@ The application receives ann API from the school having three databases:
 
 ### Instal
 
-- Clone the `https://github.com/Centyfano/examcard-auth.git` project into your computer, then navigate to the `examcard-auth` folder
+- Clone the `https://github.com/Centyfano/examcard-auth.git` project, then navigate to the `examcard-auth` folder
 - On the terminal, run `npm i`
 
 Environment Variables  
-Navigate to `backend/config`, and create a file called `config.env`. In the file, initialize and assign the following variables, according to their respective descriptions:  
-  * PORT = web_server_port  
-  * DB = database_name  
-  * DB_USER = database_user  
-  * DB_PWD = database_password  
-  * QR_SECRET = secret_encryption_key_for_qr_code
+Navigate to `backend/config`, and rename the `config.env.env` file to `config.env`. Fill the fields in the file with your values
 
 ## Usage
 
@@ -36,10 +31,12 @@ This application uses the JSON API to insert data into the database. To use the 
 
 ### Backend Server
 
+> API Documentation for the backend routes and methods can be found [here](https://www.google.com)
+
 - From the project root directory, navigate to the `backend` and open it in termial.
+- Run `node seeder.js -i` to import the data into the database
 - Run `node index.js`
 
-### Angular server
+### Angular (front-end) server
 
 - Open the root folder in termial, run `ng serve` or `ionic serve`
-- Run `node seeder.js -i` to import the data into the database

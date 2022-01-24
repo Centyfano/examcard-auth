@@ -36,6 +36,7 @@ export class ExamcardService {
   getStudent(studentId: string): Observable<Student> {
     const url = `${this.studentUrl}/${studentId}`;
     return this.http.get<Student>(url).pipe(
+      // tap((e) => console.log(e)),
       // eslint-disable-next-line arrow-body-style
       map((data: any) => {
         // console.log(data);
@@ -53,8 +54,8 @@ export class ExamcardService {
           academicYear: data.examination.academicYear,
           startDate: data.examination.startDate,
           endDate: data.examination.endDate,
-          examCardId: data.exam_qr.examinationCardId,
-          qrcode: data.exam_qr.qrcode,
+          examCardId: data.examinationCardId,
+          qrcode: data.qrcode,
         };
       }),
       tap((s) => {
@@ -76,6 +77,7 @@ export class ExamcardService {
         custom = 'Please Ensure you have cleared with the finance department';
       } else {
         custom = 'Please try again';
+        console.log(error);
       }
       // Return an observable with a user-facing error message.
       return throwError(custom);

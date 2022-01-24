@@ -14,6 +14,8 @@ EligibleStudent.belongsTo(Examination);
 Student.belongsTo(Course);
 Course.belongsTo(School);
 
+const { currentExamID } = require("./currentExam");
+
 /**
  * Get QR details
  *
@@ -27,18 +29,26 @@ exports.getQrDetails = async (req, res, next) => {
     );
 
     if (!bytes) {
-      return res.status(404).json({ message: "QR code not found" });
+      return res
+        .status(404)
+        .json({ message: "Illegal exam card, not in the system" });
     }
 
     if (bytes) {
       const { studentReg, examId } = JSON.parse(bytes); // {"studentReg": "xxx","examId": "xx"}
+
+      if (examId != currentExamID)
+        return res.status(403).json({
+          message:
+            "Illegal exam card, Student not authorized to sit for this exam", //"exam card had expired",
+        });
 
       /**
        * Check if student is eligible
        */
       const check = await EligibleStudent.findOne({
         where: [
-          { studentStudentRegNumber: studentReg },
+          { eligibleStudentIdStudentStudentRegNumber: studentReg },
           { examinationExaminationId: examId },
         ],
         include: [
@@ -61,7 +71,9 @@ exports.getQrDetails = async (req, res, next) => {
       });
 
       if (!check) {
-        return res.status(403).json({ message: "Student not authorized" });
+        return res.status(403).json({
+          message: "Illegal exam card, Student not authorized for this exam",
+        });
       }
 
       if (check) {

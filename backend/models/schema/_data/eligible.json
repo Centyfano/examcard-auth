@@ -1,80 +1,14 @@
 [
   {
-    "studentStudentRegNumber": "L3-93-94",
-    "yearOfStudy": "3",
-    "semesterOfStudy": "1",
+    "studentStudentRegNumber": "P3-63-04",
+    "yearOfStudy": "4",
+    "semesterOfStudy": "2",
     "units": [
-      { "code": "SNE 409", "name": "EPIDEMIOLOGY" },
-      { "code": "SNE 511", "name": "Financial Markets and Institutions" },
-      { "code": "MAT 442", "name": "Soil Mechanics" },
       { "code": "BIO 599", "name": "Environmental Health and Safety" },
       { "code": "COM 316", "name": "Biological Sciences" },
       { "code": "PHY 262", "name": "PROJECT PROPOSAL WRITING" },
       { "code": "COM 325", "name": "Criminology and Disasters" }
     ],
-    "examinationExaminationId": "2210"
-  },
-  {
-    "studentStudentRegNumber": "Z3-13-84",
-    "yearOfStudy": "1",
-    "semesterOfStudy": "2",
-    "units": [
-      { "code": "SNE 410", "name": "Soil Mechanics 1A. 1B" },
-      { "code": "MAT 223", "name": "Communication Design" },
-      { "code": "SNE 394", "name": "Research Methodology" },
-      { "code": "BIO 137", "name": "SHBU 7111: Principles of Bioethics" },
-      { "code": "MAT 444", "name": "Sustainable Tourism" }
-    ],
-    "examinationExaminationId": "2210"
-  },
-  {
-    "studentStudentRegNumber": "D3-23-44",
-    "yearOfStudy": "2",
-    "semesterOfStudy": "2",
-    "units": [
-      { "code": "MAT 133", "name": "Diploma in LibraryScience" },
-      { "code": "PHY 399", "name": "Renewable Energy Resources" },
-      { "code": "BIO 578", "name": "IS Management & Audit" },
-      { "code": "BIO 218", "name": "Immunology" },
-      { "code": "SNE 114", "name": "Geography of East Africa" },
-      { "code": "SNE 452", "name": "Cell Biology and Microscopy" },
-      { "code": "PHY 531", "name": "Information Literacy Skills" },
-      { "code": "SNE 617", "name": "Helminthology and Vector Biology)" },
-      { "code": "COM 154", "name": "Environmental Health and Safety" }
-    ],
-    "examinationExaminationId": "2210"
-  },
-  {
-    "studentStudentRegNumber": "T3-23-44",
-    "yearOfStudy": "1",
-    "semesterOfStudy": "1",
-    "units": [
-      { "code": "COM 154", "name": "Environmental Health and Safety" },
-      { "code": "BIO 468", "name": "BUILDING INFORMATION MODELLING" },
-      { "code": "MAT 553", "name": "SHBQ 2123: Immunology" },
-      { "code": "COM 312", "name": "ACME 3203 Music Business Project" },
-      { "code": "COM 522", "name": "Renewable Energy Resources" },
-      { "code": "COM 141", "name": "Robotics & Cybernetics" },
-      { "code": "MAT 312", "name": "Physical Sciences" },
-      { "code": "PHY 542", "name": "Digital Electronics I & II" }
-    ],
-    "examinationExaminationId": "2210"
-  },
-  {
-    "studentStudentRegNumber": "P3-63-04",
-    "yearOfStudy": "2",
-    "semesterOfStudy": "1",
-    "units": [
-      { "code": "COM 569", "name": "Heritage Conservation and Tourism" },
-      { "code": "PHY 388", "name": "Optical Communication" },
-      { "code": "SNE 173", "name": "Telecommunication and the Internet" },
-      { "code": "BIO 228", "name": "Biological Sciences" },
-      { "code": "BIO 150", "name": "Theory of Structure" },
-      { "code": "SNE 604", "name": "Geophysics" },
-      { "code": "PHY 541", "name": "CHEMICAL ENGINEERING DESIGN I & II" },
-      { "code": "BIO 583", "name": "Microwave Engineering" },
-      { "code": "BIO 189", "name": "EPIDEMIOLOGY" }
-    ],
-    "examinationExaminationId": "2210"
+    "examinationExaminationId": "2213"
   }
 ]

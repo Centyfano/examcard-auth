@@ -1,4 +1,10 @@
-.dl-btn{
-    margin: 20px;
-    padding: 20px;
+.dl-btn {
+  margin: 20px;
+  padding: 20px;
+}
+
+@media only screen and (min-width: 100px) {
+  #examCard {
+    margin: 5% 12%;
+  }
 }

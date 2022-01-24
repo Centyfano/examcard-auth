@@ -13,16 +13,17 @@
     </ion-toolbar>
   </ion-header>
 
-  <div style="padding: 5%;" *ngIf="!isError && stud" id="examCard" #examCard>
+  <div *ngIf="!isError && stud" id="examCard" #examCard>
     <app-header [student]="stud"></app-header>
     <app-body [student]="stud"></app-body>
     <app-footer [student]="stud"></app-footer>
     <div class="dl-btn">
     </div>
   </div>
-  <button (click)="genPdf()">Download PDF</button>
 
-  <div *ngIf="isError">
+  <button *ngIf="!isError && stud" (click)="genPDF()">Download PDF</button>
+
+  <div style="margin: 5% 2%;" *ngIf="isError">
     {{isError}}
   </div>
 

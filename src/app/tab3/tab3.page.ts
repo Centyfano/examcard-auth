@@ -59,7 +59,7 @@ export class Tab3Page implements OnInit {
   onCodeResult(result: string): void {
     const res =
       'U2FsdGVkX18p0CvASSI63GV8nxf8yEUyiCB8ZaYTQUtaegwLuHMCMMB6wTn9w7FWODz3zwLQa+/XWrLc4kem1Q==';
-    this.router.navigate(['/result', { code: res }]);
+    this.router.navigate(['/result', { code: result }]);
   }
 
   set res(result: any) {
