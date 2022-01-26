@@ -6,15 +6,16 @@ const erroRes = require("../middleware/error");
 const Student = require("../models/Student");
 const Course = require("../models/Course");
 const School = require("../models/School");
+const CurrentExam = require("../models/CurrentExam");
+const EligibleStudentId = require("../models/EligibleStudentId");
 require("dotenv").config({ path: "config/config.env" });
 
 // Table relationships
-EligibleStudent.belongsTo(Student);
-EligibleStudent.belongsTo(Examination);
+EligibleStudentId.belongsTo(Student);
+EligibleStudent.belongsTo(EligibleStudentId);
+// EligibleStudent.belongsTo(Examination);
 Student.belongsTo(Course);
 Course.belongsTo(School);
-
-const { currentExamID } = require("./currentExam");
 
 /**
  * Get QR details
@@ -24,6 +25,7 @@ const { currentExamID } = require("./currentExam");
 exports.getQrDetails = async (req, res, next) => {
   try {
     const { qrcode } = req.body;
+    console.log(qrcode);
     let bytes = crypto.AES.decrypt(qrcode, process.env.QR_SECRET).toString(
       crypto.enc.Utf8
     );
@@ -36,6 +38,8 @@ exports.getQrDetails = async (req, res, next) => {
 
     if (bytes) {
       const { studentReg, examId } = JSON.parse(bytes); // {"studentReg": "xxx","examId": "xx"}
+      const exam = await CurrentExam.findOne(),
+        currentExamID = exam.examinationExaminationId;
 
       if (examId != currentExamID)
         return res.status(403).json({
@@ -53,15 +57,19 @@ exports.getQrDetails = async (req, res, next) => {
         ],
         include: [
           {
-            model: Student,
-            attributes: ["firstName", "middleName", "lastName"],
-            include: [
-              {
-                model: Course,
-                attributes: ["courseName"],
-                include: [{ model: School, attributes: ["schoolName"] }],
-              },
-            ],
+            model: EligibleStudentId,
+            attributes: { exclude: ["createdAt", "updatedAt"] },
+            include: {
+              model: Student,
+              attributes: ["firstName", "middleName", "lastName"],
+              include: [
+                {
+                  model: Course,
+                  attributes: ["courseName"],
+                  include: [{ model: School, attributes: ["schoolName"] }],
+                },
+              ],
+            },
           },
           {
             model: Examination,
@@ -81,6 +89,7 @@ exports.getQrDetails = async (req, res, next) => {
       }
     }
   } catch (error) {
+    console.log(error);
     if (error.message) {
       return res.status(400).json({ message: "Illegal exam card" });
     }

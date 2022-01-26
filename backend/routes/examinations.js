@@ -7,8 +7,8 @@ const {
 } = require("../controllers/examinations");
 
 router.route("/").get(getExams);
-router.route("/").post(createExams);
-router.route("/exam").post(createExam);
+router.route("/").post(createExam);
+router.route("/all").post(createExams);
 // router.route("/:id").get(getStudent);
 
 module.exports = router;

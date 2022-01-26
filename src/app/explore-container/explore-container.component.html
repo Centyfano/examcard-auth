@@ -1,3 +1,17 @@
 <div id="container">
-  <a [routerLink]="'/examcard'">View exam card</a>
+  
+ <div class="form-container">
+    <form class="row" ion-form (ngSubmit)="login()">
+      <ion-row>
+        <ion-item lines="around">
+          <ion-label color="medium" position="floating">Reg. No</ion-label>
+          <ion-input type="text" [(ngModel)]="regNo" name="registration"></ion-input>
+        </ion-item>
+          <ion-col>
+            <ion-button [disabled]="!regNo" type="submit" color="primary" expand="block">View exam card</ion-button>
+          </ion-col>
+        </ion-row>
+    </form>
+ </div>
 </div>
+

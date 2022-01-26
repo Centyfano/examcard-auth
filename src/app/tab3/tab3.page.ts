@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { AlertController } from '@ionic/angular';
-import { take, tap } from 'rxjs/operators';
 import { QrResultService } from '../qr-result/qr-result.service';
 
 @Component({
@@ -21,8 +21,11 @@ export class Tab3Page implements OnInit {
   constructor(
     private alertController: AlertController,
     private router: Router,
-    private qrResult: QrResultService // private qrScanner: QRScanner
-  ) {}
+    private qrResult: QrResultService, // private qrScanner: QRScanner
+    private title: Title
+  ) {
+    this.title.setTitle('Scan Code');
+  }
 
   onHasPermission(hasPermission: boolean): void {
     if (!hasPermission) {

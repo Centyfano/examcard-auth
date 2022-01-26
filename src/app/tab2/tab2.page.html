@@ -23,8 +23,13 @@
 
   <button *ngIf="!isError && stud" (click)="genPDF()">Download PDF</button>
 
-  <div style="margin: 5% 2%;" *ngIf="isError">
+  <div style="margin: 5% 2%;" *ngIf="isError && isError !=='login'">
     {{isError}}
   </div>
+
+  <div style="margin: 5% 2%;" *ngIf="isError">
+    <p *ngIf="isError=== 'login'">Please <a routerLink="/home">enter registration number</a> first</p>
+  </div>
+
 
 </ion-content>

@@ -1,21 +1,23 @@
 [
   {
-    "studentStudentRegNumber": "L3-93-94",
-    "yearOfStudy": "3",
-    "semesterOfStudy": "1",
+    "studentRegNumber": "L3-93-94",
+    "yearOfStudy": 3,
+    "semesterOfStudy": 1,
     "units": [
       { "code": "SNE 409", "name": "EPIDEMIOLOGY" },
       { "code": "SNE 511", "name": "Financial Markets and Institutions" },
       { "code": "MAT 442", "name": "Soil Mechanics" },
-      { "code": "BIO 599", "name": "Environmental Health and Safety" },
-      { "code": "COM 316", "name": "Biological Sciences" },
       { "code": "PHY 262", "name": "PROJECT PROPOSAL WRITING" },
       { "code": "COM 325", "name": "Criminology and Disasters" }
     ],
-    "examinationExaminationId": "2210"
+    "examinationExaminationId": "2210",
+    "eligibleStudentIdStudentStudentRegNumber": "L3-93-94",
+    "id": "5030",
+    "examinationCardId": "4797",
+    "qrcode": "U2FsdGVkX19gCJedz9k0vcoVx8SycXFdwf2pDuidY6e8dZmoxMf4ynFICRzIn5iudRfirXHxiJUARuqPygnhFA=="
   },
   {
-    "studentStudentRegNumber": "Z3-13-84",
+    "studentRegNumber": "Z3-13-84",
     "yearOfStudy": "1",
     "semesterOfStudy": "2",
     "units": [
@@ -25,10 +27,14 @@
       { "code": "BIO 137", "name": "SHBU 7111: Principles of Bioethics" },
       { "code": "MAT 444", "name": "Sustainable Tourism" }
     ],
-    "examinationExaminationId": "2210"
+    "examinationExaminationId": "2210",
+    "eligibleStudentIdStudentStudentRegNumber": "Z3-13-84",
+    "id": "0004",
+    "examinationCardId": "7125",
+    "qrcode": "U2FsdGVkX18BqUt3fe+XKQUGHlJtHtmnvsaH5C0D4ou6Nbf7X25TZXcK0ddc0qPV8KPzPzl2k+IBil78mWeABA=="
   },
   {
-    "studentStudentRegNumber": "D3-23-44",
+    "studentRegNumber": "D3-23-44",
     "yearOfStudy": "2",
     "semesterOfStudy": "2",
     "units": [
@@ -42,10 +48,14 @@
       { "code": "SNE 617", "name": "Helminthology and Vector Biology)" },
       { "code": "COM 154", "name": "Environmental Health and Safety" }
     ],
-    "examinationExaminationId": "2210"
+    "examinationExaminationId": "2210",
+    "eligibleStudentIdStudentStudentRegNumber": "D3-23-44",
+    "id": "4860",
+    "examinationCardId": "3287",
+    "qrcode": "U2FsdGVkX19Rzf7cUt+Igfeeuz/ro4PRNbzbDSqwOQ0h6zxsrU6y8TyLOP04ibPEkFvhJ566qlD7ezMhzsr79g=="
   },
   {
-    "studentStudentRegNumber": "T3-23-44",
+    "studentRegNumber": "T3-23-44",
     "yearOfStudy": "1",
     "semesterOfStudy": "1",
     "units": [
@@ -58,10 +68,14 @@
       { "code": "MAT 312", "name": "Physical Sciences" },
       { "code": "PHY 542", "name": "Digital Electronics I & II" }
     ],
-    "examinationExaminationId": "2210"
+    "examinationExaminationId": "2210",
+    "eligibleStudentIdStudentStudentRegNumber": "T3-23-44",
+    "id": "2346",
+    "examinationCardId": "7607",
+    "qrcode": "U2FsdGVkX19xSC+3XC6K6HBIabPr5tQ81q9GmJpZkARLtQHDla3mFs5lvHDcgsvFNXJZxZ+51c6HEM6u5LTM3A=="
   },
   {
-    "studentStudentRegNumber": "P3-63-04",
+    "studentRegNumber": "P3-63-04",
     "yearOfStudy": "3",
     "semesterOfStudy": "1",
     "units": [
@@ -75,6 +89,10 @@
       { "code": "BIO 583", "name": "Microwave Engineering" },
       { "code": "BIO 189", "name": "EPIDEMIOLOGY" }
     ],
-    "examinationExaminationId": "2210"
+    "examinationExaminationId": "2210",
+    "eligibleStudentIdStudentStudentRegNumber": "P3-63-04",
+    "id": "0311",
+    "examinationCardId": "7398",
+    "qrcode": "U2FsdGVkX19K73tIS4IgKA7KCYC60hXJSDmbK0ZTqgp+I2m6PHIrv+Ig59kni4uQR4Ax1oVtP1dhNhocfDSsNQ=="
   }
 ]

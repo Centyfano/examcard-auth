@@ -19,7 +19,6 @@ app.use((req, res, next) => {
 // JSON body parser
 app.use(express.json());
 
-
 // Mount routes
 const mounts = require("./routes");
 mounts(app);
@@ -33,6 +32,4 @@ app.listen(port, () => {
 // Handle unhandled promise rejections
 process.on("unhandledRejection", (err, promise) => {
   console.log(`Error: ${err.message}`);
-  // Close server & exit process
-  // server.close(() => process.exit(1));
 });

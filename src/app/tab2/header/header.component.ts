@@ -7,10 +7,9 @@ import { Student } from 'src/app/models/student';
   styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent implements OnInit {
-
   @Input() student: Student;
-  constructor() { }
+  uni = false;
+  constructor() {}
 
   ngOnInit() {}
-
 }

@@ -13,7 +13,7 @@ const sequelize = new Sequelize(
 );
 try {
   sequelize.authenticate();
-  console.log("SQL successfully connected");
+  console.log("SQL successfully connected..");
 } catch (error) {
   console.error(`Failed to connect: ${error.message}`);
 }

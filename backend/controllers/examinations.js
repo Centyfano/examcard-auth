@@ -1,6 +1,7 @@
 const Examination = require("../models/Examination");
 const fs = require("fs");
 const path = require("path");
+const { customAlphabet } = require("nanoid");
 
 /**
  * @description Get all examinations
@@ -12,11 +13,9 @@ const path = require("path");
  */
 exports.getExams = async (req, res, next) => {
   try {
-    const exam = await Examination.findAll();
-    res.status(200).json({
-      exam,
-    });
-    if (!exam) {
+    const exams = await Examination.findAll();
+    res.status(200).json(exams);
+    if (!exams) {
       return res.status(404).json({ success: false, error: "No exams found" });
     }
   } catch (err) {
@@ -58,18 +57,15 @@ exports.createExams = async (req, res, next) => {
 
 exports.createExam = async (req, res, next) => {
   try {
-    const exam = {
-      examinationId: "2213",
-      academicYear: "2019/2020",
-      startDate: "02/10/2019",
-      endDate: "02/12/2020",
-    };
+    req.body.examinationId = customAlphabet("1234567890", 4);
+    console.log(req.body);
     await Examination.sync();
-    await Examination.upsert(exam /*, { transaction: t } */);
+    const exam = await Examination.create(req.body);
 
     res.status(201).json({
       success: true,
-      message: `Students imported successfuly, QR created`,
+      message: `Exam created`,
+      exam,
     });
     // });
   } catch (error) {

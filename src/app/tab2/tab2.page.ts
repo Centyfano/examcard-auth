@@ -2,6 +2,8 @@ import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { ExamcardService } from '../examcard/examcard.service';
 import { Student } from '../models/student';
 import { jsPDF } from 'jspdf';
+import { ActivatedRoute } from '@angular/router';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-tab2',
@@ -12,11 +14,19 @@ export class Tab2Page implements OnInit {
   @ViewChild('examCard') examCard: ElementRef;
   stud: Student;
   isError: any;
+  studId: string = this.route.snapshot.params.regId;
 
-  constructor(private examService: ExamcardService) {}
+  constructor(
+    private examService: ExamcardService,
+    private route: ActivatedRoute,
+    private title: Title
+  ) {
+    this.title.setTitle('Generate Card');
+  }
 
-  getStudent() {
-    this.examService.getStudent('P3-63-04').subscribe(
+  getStudent(studId: string) {
+    this.isError = '';
+    this.examService.getStudent(studId).subscribe(
       // P3-63-04   eligible
       // Z3-13-84   ineligible
       (res: Student) => {
@@ -49,6 +59,10 @@ export class Tab2Page implements OnInit {
   }
 
   ngOnInit() {
-    this.getStudent();
+    if (!this.studId || this.studId === undefined) {
+      this.isError = 'login';
+      return;
+    }
+    this.getStudent(this.studId);
   }
 }

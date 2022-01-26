@@ -1,7 +1,6 @@
 const express = require("express");
 const router = express.Router();
 const {
-  createEligibleStudents,
   getEligibleStudents,
   getStudent,
   createEligibleStudent,
@@ -9,8 +8,6 @@ const {
 
 router.route("/").get(getEligibleStudents);
 router.route("/:id").get(getStudent);
-router.route("/").post(createEligibleStudents);
-router.route("/student").post(createEligibleStudent);
-// router.route("/:id").get(getStudent);
+router.route("/").post(createEligibleStudent);
 
 module.exports = router;

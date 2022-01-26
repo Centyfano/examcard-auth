@@ -20,11 +20,12 @@ export class QrResultComponent implements OnInit {
   getRes() {
     this.qrResult.fetchResult(this.qrCode).subscribe(
       (res: any) => {
+        res.regNumber = res.eligibleStudentIdStudentStudentRegNumber;
         this.userDetails = res;
         this.userDetails.fullName = this.fullName(
-          res.student.firstName,
-          res.student.middleName,
-          res.student.lastName
+          res.eligible_student_id.student.firstName,
+          res.eligible_student_id.student.middleName,
+          res.eligible_student_id.student.lastName
         );
       },
       (err: any) => {

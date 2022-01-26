@@ -8,7 +8,7 @@ import { Student } from '../models/student';
   providedIn: 'root',
 })
 export class ExamcardService {
-  private studentUrl = 'http://localhost:3000/eligible';
+  private studentUrl = 'http://local.host:3000/api/eligible';
 
   // eslint-disable-next-line @typescript-eslint/member-ordering
   throwError: any;
@@ -41,16 +41,18 @@ export class ExamcardService {
       map((data: any) => {
         // console.log(data);
         return {
-          name: `${data.student.firstName} ${this.formatName(
-            data.student.middleName
-          )} ${data.student.lastName}`,
-          regNumber: data.studentStudentRegNumber,
-          school: data.student.course.school.schoolName,
-          course: data.student.course.courseName,
+          name: `${
+            data.eligible_student_id.student.firstName
+          } ${this.formatName(data.eligible_student_id.student.middleName)} ${
+            data.eligible_student_id.student.lastName
+          }`,
+          regNumber: data.eligible_student_id.studentStudentRegNumber,
+          school: data.eligible_student_id.student.course.school.schoolName,
+          course: data.eligible_student_id.student.course.courseName,
           year: data.yearOfStudy,
           semester: data.semesterOfStudy,
           units: data.units,
-          examinationId: data.examinationExaminationId,
+          examinationId: data.examination.examinationId,
           academicYear: data.examination.academicYear,
           startDate: data.examination.startDate,
           endDate: data.examination.endDate,
