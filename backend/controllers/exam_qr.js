@@ -8,7 +8,11 @@ const Course = require("../models/Course");
 const School = require("../models/School");
 const CurrentExam = require("../models/CurrentExam");
 const EligibleStudentId = require("../models/EligibleStudentId");
-require("dotenv").config({ path: "config/config.env" });
+const path = require("path");
+require("dotenv").config({
+  path: path.join(__dirname, "..", "config", "config.env"),
+});
+
 
 // Table relationships
 EligibleStudentId.belongsTo(Student);

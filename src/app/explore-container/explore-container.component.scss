@@ -31,3 +31,12 @@
   flex-direction: row;
   justify-content: center;
 }
+
+.footer {
+  position: fixed;
+  margin: 0 50%;
+  transform: translate(-50%, 0);
+  bottom: 5%;
+  width: 100%;
+  padding: 0 20px;
+}

@@ -20,7 +20,7 @@ export class QrResultService {
   fetchResult(result: string): Observable<Qr> {
     const data = { qrcode: result };
 
-    const url = 'http://local.host:3000/api/qr';
+    const url = 'http://examauth.centyfano.dev/api/qr';
     return this.http.post<Qr>(url, data, this.httpOptions).pipe(
       tap((res) => {
         this.data = res;

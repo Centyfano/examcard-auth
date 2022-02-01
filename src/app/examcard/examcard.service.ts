@@ -8,7 +8,7 @@ import { Student } from '../models/student';
   providedIn: 'root',
 })
 export class ExamcardService {
-  private studentUrl = 'http://local.host:3000/api/eligible';
+  private studentUrl = 'http://examauth.centyfano.dev/api/eligible';
 
   // eslint-disable-next-line @typescript-eslint/member-ordering
   throwError: any;

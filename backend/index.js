@@ -1,5 +1,8 @@
 const express = require("express");
-require("dotenv").config({ path: "backend/config/config.env" });
+const path = require("path");
+require("dotenv").config({
+  path: path.join(__dirname, "config", "config.env"),
+});
 const app = express();
 
 // CORS
@@ -16,12 +19,18 @@ app.use((req, res, next) => {
   next();
 });
 
+app.use(express.static(path.join(__dirname, "public", "dist")));
+
 // JSON body parser
 app.use(express.json());
 
 // Mount routes
 const mounts = require("./routes");
 mounts(app);
+
+app.get("/", (req, res) => {
+  res.render("index.html");
+});
 
 // Start server
 const port = process.env.PORT;

@@ -1,10 +1,12 @@
 const EligibleStudent = require("../models/EligibleStudent");
+const path = require("path");
 const { customAlphabet } = require("nanoid");
 const nanoid = customAlphabet("1234567890", 4);
 const crypto = require("crypto-js");
-require("dotenv").config({ path: "config/config.env" });
+require("dotenv").config({
+  path: path.join(__dirname, "..", "config", "config.env"),
+});
 const fs = require("fs");
-const path = require("path");
 
 const Student = require("../models/Student"),
   Examination = require("../models/Examination"),

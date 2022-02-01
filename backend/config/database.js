@@ -1,5 +1,7 @@
+const path = require("path");
 const { Sequelize } = require("sequelize");
-require("dotenv").config({ path: "./config/config.env" });
+require("dotenv").config({ path: path.join(__dirname, "config", "config.env") });
+
 
 // const db = async () => {
 const sequelize = new Sequelize(

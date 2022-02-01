@@ -1,7 +1,12 @@
 const fs = require("fs");
 const Sequelize = require("sequelize");
 const got = require("got");
-require("dotenv").config({ path: "./config/config.env" });
+require("dotenv").config({
+  path: path.join(__dirname, "config", "config.env"),
+});
+
+console.log(path.join(__dirname, "..", "config", "config.env"));
+
 
 // Connect to DB
 const sequelize = new Sequelize(
@@ -23,6 +28,7 @@ try {
 // Models
 const Student = require("./Student");
 const Course = require("./Course");
+const path = require("path");
 
 // JSON data files
 // const path_to = `${__dirname}/models/schemas/_data`;
