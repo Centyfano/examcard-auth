@@ -31,7 +31,7 @@ This application uses the JSON API to insert data into the database. To use the 
 
 ### Backend Server
 
-> API Documentation for the backend routes and methods can be found [here](https://www.google.com)
+> Postman API documentation for methods and routes can be found [here](https://documenter.getpostman.com/view/11992312/UVeDsn8X)
 
 - From the project root directory, navigate to the `backend` and open it in termial.
 - Run `node seeder.js -i` to import the data into the database
@@ -40,3 +40,5 @@ This application uses the JSON API to insert data into the database. To use the 
 ### Angular (front-end) server
 
 - Open the root folder in termial, run `ng serve` or `ionic serve`
+#### Demo
+Live project demo can be found [here](https://examauth.centyfano.dev)
