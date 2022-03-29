@@ -6207,7 +6207,7 @@ __webpack_require__.r(__webpack_exports__);
 let ExamcardService = class ExamcardService {
     constructor(http) {
         this.http = http;
-        this.studentUrl = 'http://examauth.centyfano.dev/api/eligible';
+        this.studentUrl = 'https://examauth.centyfano.dev/api/eligible';
     }
     /**
      * Formats the input name; if name is null, it returns nothing
